@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            background: #f5f7fa
+        }
+
+        .payment-card {
+            max-width: 650px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, .08)
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            cursor: pointer
+        }
+
+        .payment-option:hover {
+            border-color: #0d6efd
+        }
+
+        .payment-option input {
+            margin-right: 15px
+        }
+
+        .payment-icon {
+            font-size: 28px;
+            margin-right: 12px
+        }
+
+        .booking-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px
+        }
+
+        #paymentInputs {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="payment-card">
+            <div class="text-center mb-4">
+                <i class="bi bi-credit-card-fill text-primary" style="font-size:55px;"></i>
+                <h2 class="mt-2">Payment</h2>
+                <p class="text-muted">Complete your booking</p>
+            </div>
+            <div class="booking-info">
+                <h5><i class="bi bi-airplane-fill"></i> Booking Information</h5>
+                <hr>
+                <p><strong>Destination:</strong> <span id="destination"></span></p>
+                <p><strong>Travel Date:</strong> <span id="travelDate"></span></p>
+                <p><strong>Travelers:</strong> <span id="travelers"></span></p>
+                <p><strong>Total Price:</strong> $<span id="totalPrice"></span></p>
+            </div>
+            <h5 class="mb-3">Choose Payment Method</h5>
+            <label class="payment-option w-100">
+                <input type="radio" name="payment" value="Card">
+                <i class="bi bi-credit-card-fill payment-icon text-primary"></i>
+                <strong>Credit / Debit Card</strong>
+            </label>
+            <label class="payment-option w-100">
+                <input type="radio" name="payment" value="PayPal">
+                <i class="bi bi-paypal payment-icon text-primary"></i>
+                <strong>PayPal</strong>
+            </label>
+            <label class="payment-option w-100">
+                <input type="radio" name="payment" value="Vodafone Cash">
+                <i class="bi bi-phone-fill payment-icon text-danger"></i>
+                <strong>Vodafone Cash</strong>
+            </label>
+            <div id="paymentInputs" class="mt-3"></div>
+            <button id="confirmPayment" class="btn btn-success w-100 mt-3">
+                <i class="bi bi-check-circle-fill"></i> Confirm Payment
+            </button>
+        </div>
+    </div>
+    <script>
+        let booking = JSON.parse(sessionStorage.getItem("pendingBooking"));
+        if (!booking) {
+            window.location.href = "home.html";
+        }
+        document.getElementById("destination").innerText = booking.destination;
+        document.getElementById("travelDate").innerText = booking.travelDate;
+        document.getElementById("travelers").innerText = booking.travelers;
+        document.getElementById("totalPrice").innerText = booking.totalPrice;
+
+        let paymentInputs = document.getElementById("paymentInputs");
+        let paymentOptions = document.querySelectorAll('input[name="payment"]');
+
+        paymentOptions.forEach(function (option) {
+            option.addEventListener("change", function () {
+                let method = this.value;
+                if (method === "Card") {
+                    paymentInputs.innerHTML = `
+<div class="mb-3">
+<label class="form-label">Card Number</label>
+<input type="text" id="cardNumber" class="form-control" placeholder="1234 5678 9012 3456">
+</div>
+<div class="row">
+<div class="col-md-6 mb-3">
+<label class="form-label">Expiry Date</label>
+<input type="text" id="expiry" class="form-control" placeholder="MM/YY">
+</div>
+<div class="col-md-6 mb-3">
+<label class="form-label">CVV</label>
+<input type="text" id="cvv" class="form-control" placeholder="123">
+</div>
+</div>`;
+                }
+                else if (method === "PayPal") {
+                    paymentInputs.innerHTML = `
+<div class="mb-3">
+<label class="form-label">PayPal Email</label>
+<input type="email" id="paypalEmail" class="form-control" placeholder="example@gmail.com">
+</div>`;
+                }
+                else if (method === "Vodafone Cash") {
+                    paymentInputs.innerHTML = `
+<div class="mb-3">
+<label class="form-label">Vodafone Cash Number</label>
+<input type="text" id="vodafoneNumber" class="form-control" placeholder="01012345678">
+</div>`;
+                }
+            });
+        });
+
+        document.getElementById("confirmPayment").onclick = function () {
+            let selected = document.querySelector('input[name="payment"]:checked');
+
+            if (!selected) {
+                alert("Please choose a payment method.");
+                return;
+            }
+
+            let method = selected.value;
+
+            if (method === "Card") {
+                let cardNumber = document.getElementById("cardNumber").value;
+                let expiry = document.getElementById("expiry").value;
+                let cvv = document.getElementById("cvv").value;
+                if (cardNumber === "" || expiry === "" || cvv === "") {
+                    alert("Please enter all card information.");
+                    return;
+                }
+            }
+
+            if (method === "PayPal") {
+                let email = document.getElementById("paypalEmail").value;
+                if (email === "") {
+                    alert("Please enter your PayPal email.");
+                    return;
+                }
+            }
+
+            if (method === "Vodafone Cash") {
+                let phone = document.getElementById("vodafoneNumber").value;
+                if (phone === "") {
+                    alert("Please enter your Vodafone Cash number.");
+                    return;
+                }
+            }
+
+            booking.paymentMethod = method;
+            booking.paymentStatus = "Paid";
+            
+
+            let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+
+            bookings.push(booking);
+
+            localStorage.setItem("bookings", JSON.stringify(bookings));
+            localStorage.setItem("paidBooking", JSON.stringify(booking));
+
+            sessionStorage.removeItem("pendingBooking");
+
+            window.location.href = "receipt.html";
+        };
+    </script>
+</body>
+
+</html>

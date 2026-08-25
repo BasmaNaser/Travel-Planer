@@ -1,44 +1,76 @@
+let myDiv = document.getElementById("myDiv");
+
+let myBtn = document.getElementById("mylogin");
+
+let usersTable = document.getElementById("usersTable");
+
+let totalUsers = document.getElementById("totalUsers");
+
+let totalBookings = document.getElementById("totalBookings");
+
+let totalTrips = document.getElementById("totalTrips");
+
+let logoutBtn = document.getElementById("logoutBtn");
+
+
 // =====================================
 // CHECK ADMIN
 // =====================================
 
+let registerdUserlocal =
+    JSON.parse(localStorage.getItem("admin"));
 
-let myDiv = document.getElementById('myDiv')
-
-let registerdUserlocal = JSON.parse(localStorage.getItem('admin'))
-let registerdUsersession = JSON.parse(sessionStorage.getItem('admin'))
-let myBtn=document.getElementById('mylogin')
-console.log(myBtn.classList.add("btn-danger"));
-
-if(registerdUserlocal||registerdUsersession){
-    myBtn.innerHTML='Logout'
-}
-else
-{
-    myBtn.innerHTML='Login'
-    
-}
-myBtn.onclick = function(){
-
-    if (registerdUserlocal) {
-        localStorage.removeItem('admin')
-    }
-
-    if (registerdUsersession) {
-        sessionStorage.removeItem('admin')
-    }
-
-    window.location.href = '../html/login.html'
-}
-
-let admin =
-    JSON.parse(localStorage.getItem("admin")) ||
+let registerdUsersession =
     JSON.parse(sessionStorage.getItem("admin"));
 
+let admin =
+    registerdUserlocal ||
+    registerdUsersession;
 
-// لو مش Admin ممنوع يدخل Dashboard
+
+// =====================================
+// LOGIN / LOGOUT BUTTON
+// =====================================
+
+if (registerdUserlocal || registerdUsersession) {
+
+    myBtn.innerHTML = "Logout";
+
+    myBtn.classList.add("btn-danger");
+
+}
+else {
+
+    myBtn.innerHTML = "Login";
+
+}
+
+
+// =====================================
+// LOGIN BUTTON
+// =====================================
+
+myBtn.onclick = function() {
+
+    localStorage.removeItem("admin");
+
+    sessionStorage.removeItem("admin");
+
+    window.location.href =
+        "../html/login.html";
+
+};
+
+
+// =====================================
+// PROTECT ADMIN DASHBOARD
+// =====================================
+
 if (!admin) {
-    window.location.href = "login.html";
+
+    window.location.href =
+        "login.html";
+
 }
 
 
@@ -47,26 +79,29 @@ if (!admin) {
 // =====================================
 
 let users =
-    JSON.parse(localStorage.getItem("users")) || [];
+    JSON.parse(
+        localStorage.getItem("users")
+    ) || [];
 
 
 // =====================================
-// GET CARDS
+// GET BOOKINGS
+// =====================================
+
+let bookings =
+    JSON.parse(
+        localStorage.getItem("bookings")
+    ) || [];
+
+
+// =====================================
+// GET ADMIN CARDS
 // =====================================
 
 let adminCards =
-    JSON.parse(localStorage.getItem("adminCards")) || [];
-
-
-// =====================================
-// ELEMENTS
-// =====================================
-
-let totalUsers =
-    document.getElementById("totalUsers");
-
-let usersTable =
-    document.getElementById("usersTable");
+    JSON.parse(
+        localStorage.getItem("adminCards")
+    ) || [];
 
 
 // =====================================
@@ -77,8 +112,31 @@ function showUsers() {
 
     usersTable.innerHTML = "";
 
-    // Total Users
-    totalUsers.innerText = users.length;
+    totalUsers.innerText =
+        users.length;
+
+
+    if (users.length === 0) {
+
+        usersTable.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="5"
+                    class="text-center">
+
+                    No users yet
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
 
 
     users.forEach(function(user, index) {
@@ -92,15 +150,15 @@ function showUsers() {
                 </td>
 
                 <td>
-                    ${user.name || ""}
+                    ${user.name || "-"}
                 </td>
 
                 <td>
-                    ${user.email || ""}
+                    ${user.email || "-"}
                 </td>
 
                 <td>
-                    ${user.phone || ""}
+                    ${user.phone || "-"}
                 </td>
 
                 <td>
@@ -125,43 +183,110 @@ function showUsers() {
 
 
 // =====================================
+// SHOW TOTAL BOOKINGS
+// =====================================
+
+function showTotalBookings() {
+
+    totalBookings.innerText =
+        bookings.length;
+
+}
+
+
+// =====================================
+// SHOW TOTAL TRIPS
+// =====================================
+
+function showTotalTrips() {
+
+    totalTrips.innerText =
+        adminCards.length;
+
+}
+
+
+// =====================================
 // DELETE USER
 // =====================================
 
-window.deleteUser = function(index) {
+window.deleteUser =
+    function(index) {
 
-    Swal.fire({
+        Swal.fire({
 
-        title: "Delete User?",
+            title: "Delete User?",
 
-        text: "Are you sure you want to delete this user?",
+            text:
+                "Are you sure you want to delete this user?",
 
-        icon: "warning",
+            icon: "warning",
 
-        showCancelButton: true,
+            showCancelButton: true,
 
-        confirmButtonText: "Yes, delete",
+            confirmButtonText:
+                "Yes, delete",
 
-        cancelButtonText: "Cancel",
+            cancelButtonText:
+                "Cancel",
 
-        confirmButtonColor: "#dc3545"
+            confirmButtonColor:
+                "#dc3545"
 
-    }).then(function(result) {
+        }).then(function(result) {
 
-        if (result.isConfirmed) {
+            if (!result.isConfirmed) {
 
-            // Delete user from array
+                return;
+
+            }
+
+
+            let deletedUser =
+                users[index];
+
+
+            // Delete user
+
             users.splice(index, 1);
 
 
-            // Save users again
             localStorage.setItem(
                 "users",
                 JSON.stringify(users)
             );
 
 
-            // Update table
+            // Delete user's bookings
+
+            bookings =
+                bookings.filter(
+                    function(booking) {
+
+                        return booking.userId !==
+                            deletedUser.id;
+
+                    }
+                );
+
+
+            localStorage.setItem(
+                "bookings",
+                JSON.stringify(bookings)
+            );
+
+
+            // Update totals
+
+            totalUsers.innerText =
+                users.length;
+
+            totalBookings.innerText =
+                bookings.length;
+
+
+            // Refresh users table
+
             showUsers();
 
 
@@ -171,7 +296,8 @@ window.deleteUser = function(index) {
 
                 title: "Deleted!",
 
-                text: "User has been deleted.",
+                text:
+                    "User and their bookings have been deleted.",
 
                 timer: 1500,
 
@@ -179,60 +305,38 @@ window.deleteUser = function(index) {
 
             });
 
-        }
-
-    });
-
-};
-
-
-// =====================================
-// TOTAL CARDS
-// =====================================
-
-let totalTrips =
-    document.getElementById("totalTrips");
-
-if (totalTrips) {
-
-    totalTrips.innerText =
-        adminCards.length;
-
-}
-
-
-// =====================================
-// LOGOUT ADMIN
-// =====================================
-
-let logoutBtn =
-    document.getElementById("logoutBtn");
-
-if (logoutBtn) {
-
-    logoutBtn.onclick = function() {
-
-        // IMPORTANT:
-        // Remove ADMIN login only
-
-        localStorage.removeItem("admin");
-
-        sessionStorage.removeItem("admin");
-
-
-        // DON'T USE:
-        // localStorage.clear();
-
-
-        window.location.href = "home.html";
+        });
 
     };
 
+
+// =====================================
+// LOGOUT
+// =====================================
+
+if (logoutBtn) {
+
+    logoutBtn.onclick =
+        function() {
+
+            localStorage.removeItem("admin");
+
+            sessionStorage.removeItem("admin");
+
+            window.location.href =
+                "home.html";
+
+        };
+
 }
 
 
 // =====================================
-// START
+// START DASHBOARD
 // =====================================
 
 showUsers();
+
+showTotalBookings();
+
+showTotalTrips();

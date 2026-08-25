@@ -3,6 +3,15 @@ const container =
 
 
 // =====================================
+// CHECK ADMIN
+// =====================================
+
+let admin =
+    JSON.parse(localStorage.getItem("admin")) ||
+    JSON.parse(sessionStorage.getItem("admin"));
+
+
+// =====================================
 // GET DESTINATION
 // =====================================
 
@@ -46,7 +55,7 @@ if (!user) {
         document.cookie.split("; ");
 
     const userCookie =
-        cookies.find(function(row) {
+        cookies.find(function (row) {
 
             return row.startsWith("loginedUser=");
 
@@ -73,20 +82,32 @@ if (!user) {
 
 
 // =====================================
-// CHECK USER & DESTINATION
+// CHECK ADMIN
 // =====================================
 
-if (!user || !destination) {
+if (admin) {
 
     container.innerHTML = `
 
-        <div class="text-center">
+        <div class="booking-card text-center">
 
-            <h2>Unable to Book</h2>
+            <i class="bi bi-shield-lock-fill text-danger fs-1"></i>
 
-            <p>
-                Please login first.
+            <h2 class="mt-3">
+                Admin Cannot Book
+            </h2>
+
+            <p class="text-muted">
+                Sorry, administrators cannot book trips.
             </p>
+
+            <a
+                href="home.html"
+                class="btn btn-primary">
+
+                Back Home
+
+            </a>
 
         </div>
 
@@ -95,71 +116,149 @@ if (!user || !destination) {
 }
 
 
-// =====================================
-// SHOW BOOKING PAGE
-// =====================================
+// User or destination missing
 
-else {
+else if (!user || !destination) {
 
     container.innerHTML = `
 
-        <div class="card p-4">
+        <div class="booking-card text-center">
 
             <h2>
-                ${destination.name}
+                Unable to Book
             </h2>
 
             <p>
+                Please login first.
+            </p>
+
+            <a
+                href="login.html"
+                class="btn btn-primary">
+
+                Login
+
+            </a>
+
+        </div>
+
+    `;
+
+}
+
+
+// Show booking
+
+else {
+
+    if (!user.id) {
+
+        user.id = Date.now();
+
+        sessionStorage.setItem(
+            "loginedUser",
+            JSON.stringify(user)
+        );
+
+    }
+
+
+    container.innerHTML = `
+
+        <div class="booking-card">
+
+            <div class="text-center mb-4">
+
+                <i class="bi bi-airplane-fill text-primary fs-1"></i>
+
+                <h2 class="mt-2">
+                    Book Your Trip
+                </h2>
+
+            </div>
+
+
+            <h3>
+                ${destination.name}
+            </h3>
+
+            <p class="text-muted">
+
+                <i class="bi bi-geo-alt-fill"></i>
+
                 ${destination.country}
+
             </p>
 
             <hr>
 
-            <h4>
+
+            <h5>
                 Your Information
-            </h4>
+            </h5>
 
             <p>
+
                 <strong>Name:</strong>
+
                 ${user.name}
+
             </p>
 
+
             <p>
+
                 <strong>Email:</strong>
+
                 ${user.email}
+
             </p>
 
+
             <p>
+
                 <strong>Phone:</strong>
+
                 ${user.phone}
+
             </p>
+
 
             <hr>
 
-            <h4>
+
+            <h5>
                 Trip Information
-            </h4>
+            </h5>
+
 
             <p>
+
                 <strong>Price:</strong>
+
                 $${destination.price}
+
                 per person
+
             </p>
 
 
             <form id="bookingForm">
 
+
                 <div class="mb-3">
 
                     <label class="form-label">
+
                         Travel Date
+
                     </label>
+
 
                     <input
                         type="date"
                         id="travelDate"
-                        class="form-control"
-                    >
+                        class="form-control">
 
                 </div>
 
@@ -167,27 +266,32 @@ else {
                 <div class="mb-3">
 
                     <label class="form-label">
+
                         Number of Travelers
+
                     </label>
+
 
                     <input
                         type="number"
                         id="travelers"
                         class="form-control"
                         min="1"
-                        value="1"
-                    >
+                        value="1">
 
                 </div>
 
 
                 <button
                     type="submit"
-                    class="btn btn-success">
+                    class="btn btn-success w-100">
+
+                    <i class="bi bi-calendar-check"></i>
 
                     Confirm Booking
 
                 </button>
+
 
             </form>
 
@@ -198,15 +302,16 @@ else {
 }
 
 
-// =====================================
-// CONFIRM BOOKING
-// =====================================
+// Confirm booking
 
 document.addEventListener(
     "submit",
-    function(e) {
+    function (e) {
 
-        if (e.target.id !== "bookingForm") {
+
+        if (
+            e.target.id !== "bookingForm"
+        ) {
 
             return;
 
@@ -216,23 +321,19 @@ document.addEventListener(
         e.preventDefault();
 
 
-        const travelDate =
+        let travelDate =
             document.getElementById(
                 "travelDate"
             ).value;
 
 
-        const travelers =
+        let travelers =
             Number(
                 document.getElementById(
                     "travelers"
                 ).value
             );
 
-
-        // =================================
-        // CHECK DATE
-        // =================================
 
         if (!travelDate) {
 
@@ -252,17 +353,13 @@ document.addEventListener(
         }
 
 
-        // =================================
-        // CHECK TRAVELERS
-        // =================================
-
         if (travelers < 1) {
 
             Swal.fire({
 
                 icon: "warning",
 
-                title: "Invalid Number",
+                title: "Invalid number",
 
                 text:
                     "Number of travelers must be at least 1."
@@ -274,25 +371,21 @@ document.addEventListener(
         }
 
 
-        // =================================
-        // CALCULATE TOTAL
-        // =================================
-
-        const price =
+        let price =
             Number(destination.price);
 
 
-        const totalPrice =
+        let totalPrice =
             price * travelers;
 
 
-        // =================================
-        // CREATE BOOKING
-        // =================================
+        // Create temporary booking
 
-        const booking = {
+        let booking = {
 
             bookingId: Date.now(),
+
+            userId: user.id,
 
             name: user.name,
 
@@ -311,152 +404,23 @@ document.addEventListener(
             price: price,
 
             totalPrice: totalPrice,
-
-            status: "pending"
+            status: "Pending"
 
         };
 
 
-        // =====================================
-        // ADD BOOKING TO LOGGED USER
-        // =====================================
+        // Save temporarily until payment
 
-        if (!user.bookings) {
-
-            user.bookings = {};
-
-        }
-
-
-        user.bookings[destination.name] = booking;
-
-
-        // =====================================
-        // GET USERS FROM LOCAL STORAGE
-        // =====================================
-
-        let users =
-            JSON.parse(
-                localStorage.getItem("users")
-            ) || [];
-
-
-        // =====================================
-        // FIND LOGGED USER
-        // =====================================
-
-        let userIndex =
-            users.findIndex(function(item) {
-
-                return item.email === user.email;
-
-            });
-
-
-        // =====================================
-        // UPDATE USER IN USERS
-        // =====================================
-
-        if (userIndex !== -1) {
-
-
-            // Create bookings object
-            // if user doesn't have one
-
-            if (!users[userIndex].bookings) {
-
-                users[userIndex].bookings = {};
-
-            }
-
-
-            // Add booking to user
-
-            users[userIndex].bookings[destination.name] =
-                booking;
-
-
-            // Update local user object
-
-            user = users[userIndex];
-
-
-            // Save Users
-
-            localStorage.setItem(
-                "users",
-                JSON.stringify(users)
-            );
-
-        }
-
-
-        // =====================================
-        // UPDATE LOGINED USER
-        // =====================================
-
-        if (loginSource === "session") {
-
-            sessionStorage.setItem(
-                "loginedUser",
-                JSON.stringify(user)
-            );
-
-        }
-
-
-        if (loginSource === "cookie") {
-
-            document.cookie =
-                "loginedUser=" +
-                encodeURIComponent(
-                    JSON.stringify(user)
-                ) +
-                "; path=/";
-
-        }
-
-
-        // =====================================
-        // SAVE ALL BOOKINGS
-        // =====================================
-
-        let bookings =
-            JSON.parse(
-                localStorage.getItem("bookings")
-            ) || [];
-
-
-        bookings.push(booking);
-
-
-        localStorage.setItem(
-            "bookings",
-            JSON.stringify(bookings)
+        sessionStorage.setItem(
+            "pendingBooking",
+            JSON.stringify(booking)
         );
 
 
-        // =====================================
-        // SUCCESS
-        // =====================================
+        // Go to payment
 
-        Swal.fire({
-
-            icon: "success",
-
-            title: "Booking Confirmed!",
-
-            text:
-                `Your trip to ${destination.name} has been booked successfully.`,
-
-            confirmButtonText: "OK"
-
-        }).then(function() {
-
-            window.location.href =
-                "home.html";
-
-        });
+        window.location.href =
+            "payment.html";
 
     }
 );
