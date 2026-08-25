@@ -1,0 +1,145 @@
+{
+  "trending": [
+    {
+      "id": 3,
+      "name": "Kyoto",
+      "country": "Japan",
+      "image": "images/unnamed (2).jpg",
+      "badge": "Trending",
+      "rating": 4.9,
+      "tags": ["Historic", "Nature"],
+      "description": "Immerse yourself in tranquil temples, beautiful gardens, and traditional Japanese culture.",
+      "price": 1450
+    },
+    {
+      "id": 4,
+      "name": "Rome",
+      "country": "Italy",
+      "image": "images/unnamed (3).jpg",
+      "badge": "Best Seller",
+      "rating": 4.8,
+      "tags": ["History", "Food"],
+      "description": "Step back in time and explore the Eternal City's ancient ruins and vibrant piazzas.",
+      "price": 1100
+    },
+    {
+      "id": 5,
+      "name": "Bali",
+      "country": "Indonesia",
+      "image": "images/unnamed (4).jpg",
+      "badge": "Trending",
+      "rating": 4.7,
+      "tags": ["Tropical", "Wellness"],
+      "description": "Discover lush jungles, pristine beaches, and a unique spiritual atmosphere.",
+      "price": 800
+    }
+  ],
+
+  "coastal": [
+    {
+      "id": 7,
+      "name": "Maldives",
+      "country": "South Asia",
+      "image": "images/unnamed (6).jpg",
+      "badge": "Trending",
+      "rating": 5.0,
+      "tags": ["Luxury", "Beach"],
+      "description": "Escape to paradise with overwater bungalows and crystal clear turquoise waters.",
+      "price": 2500
+    },
+    {
+      "id": 8,
+      "name": "Amalfi Coast",
+      "country": "Italy",
+      "image": "images/unnamed (7).jpg",
+      "badge": "",
+      "rating": 4.9,
+      "tags": ["Scenic", "Coastal"],
+      "description": "Dramatic cliffs and colorful villages overlooking the Mediterranean Sea.",
+      "price": 1800
+    },
+    {
+      "id": 9,
+      "name": "Rio de Janeiro",
+      "country": "Brazil",
+      "image": "images/unnamed (8).jpg",
+      "badge": "",
+      "rating": 4.7,
+      "tags": ["Vibrant", "Beach"],
+      "description": "Iconic beaches, lively culture, and the breathtaking Christ the Redeemer statue.",
+      "price": 1200
+    }
+  ],
+
+  "adventure": [
+    {
+      "id": 10,
+      "name": "Swiss Alps",
+      "country": "Switzerland",
+      "image": "images/unnamed (9).jpg",
+      "badge": "Trending",
+      "rating": 4.9,
+      "tags": ["Hiking", "Nature"],
+      "description": "Breathtaking mountain vistas and world-class outdoor activities for every season.",
+      "price": 1600
+    },
+    {
+      "id": 11,
+      "name": "Grand Canyon",
+      "country": "USA",
+      "image": "images/unnamed (10).jpg",
+      "badge": "",
+      "rating": 4.8,
+      "tags": ["Adventure", "National Park"],
+      "description": "Witness the awe-inspiring scale and beauty of one of the world's most iconic natural wonders.",
+      "price": 700
+    },
+    {
+      "id": 12,
+      "name": "Queenstown",
+      "country": "New Zealand",
+      "image": "images/unnamed (11).jpg",
+      "badge": "Best Seller",
+      "rating": 5.0,
+      "tags": ["Extreme", "Outdoors"],
+      "description": "The adventure capital of the world, offering everything from bungee jumping to skiing.",
+      "price": 1400
+    }
+  ],
+
+  "cultural": [
+    {
+      "id": 13,
+      "name": "Cairo",
+      "country": "Egypt",
+      "image": "images/unnamed (12).jpg",
+      "badge": "Best Seller",
+      "rating": 4.8,
+      "tags": ["Ancient", "History"],
+      "description": "Explore the majestic Pyramids of Giza and the rich history of the Nile.",
+      "price": 900
+    },
+    {
+      "id": 14,
+      "name": "Florence",
+      "country": "Italy",
+      "image": "images/unnamed (13).jpg",
+      "badge": "",
+      "rating": 4.9,
+      "tags": ["Art", "Renaissance"],
+      "description": "The birthplace of the Renaissance, filled with world-class museums and stunning architecture.",
+      "price": 1300
+    },
+    {
+      "id": 15,
+      "name": "Kyoto",
+      "country": "Japan",
+      "image": "images/unnamed (8).jpg",
+      "badge": "Trending",
+      "rating": 4.9,
+      "tags": ["Tradition", "Temples"],
+      "description": "Immerse yourself in the serene beauty of traditional Japanese culture and zen.",
+      "price": 1450
+    }
+  ]
+}

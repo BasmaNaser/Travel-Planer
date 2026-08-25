@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile</title>
+    <link rel="icon" type="img/png" href="../imgs/download (1).webp">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="../css/myprofile.css">
+    <link rel="stylesheet" href="../css/navandFooter.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm fixed-top">
+    <div class="container">
+
+        <!-- Logo -->
+        <a class="navbar-brand fw-bold" href="./home.html">
+            Trip<span>Mate</span>
+        </a>
+
+        <!-- Mobile Button -->
+        <button class="navbar-toggler border-0 shadow-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navigation -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav mx-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="./home.html">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./about.html">
+                        About Us
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link " href="./services.html">
+                        Services
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./destination.html">
+                        Destinations
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./contact.html">
+                        Contact Us
+                    </a>
+                </li>
+
+            </ul>
+
+            <!-- Login -->
+            <button class="btn-sm login-btn " id="mylogin">
+                Login
+            </button>
+            <button class="btn login-btn ms-2" id="myprofile">
+                Profile
+            </button>
+
+        </div>
+    </div>
+     </nav>
+
+    <div class="container py-5">
+
+        <div class="profile-card">
+
+            <div class="profile-header text-center">
+
+                <div class="profile-image-container">
+
+                    <img
+                        id="profileImage"
+                        src="../imgs/avatar.webp"
+                        alt="Profile Image"
+                        class="profile-image">
+
+                    <button
+                        type="button"
+                        id="changeImageBtn"
+                        class="change-image-btn"
+                        disabled>
+
+                        <i class="fa-solid fa-camera"></i>
+
+                    </button>
+
+                    <input
+                        type="file"
+                        id="imageInput"
+                        accept="image/*"
+                        hidden>
+
+                </div>
+
+                <h2>My Profile</h2>
+
+                <p>Manage your personal information</p>
+
+            </div>
+
+
+            <form id="profileForm">
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-4">
+
+                        <label
+                            for="fullName"
+                            class="form-label">
+
+                            Full Name
+
+                        </label>
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+                                <i class="fa-solid fa-user"></i>
+                            </span>
+
+                            <input
+                                type="text"
+                                id="fullName"
+                                class="form-control"
+                                placeholder="Full Name"
+                                disabled>
+
+                        </div>
+
+                        <div id="fullNameError"></div>
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-4">
+
+                        <label
+                            for="email"
+                            class="form-label">
+
+                            Email
+
+                        </label>
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+                                <i class="fa-solid fa-envelope"></i>
+                            </span>
+
+                            <input
+                                type="email"
+                                id="email"
+                                class="form-control"
+                                placeholder="Email"
+                                disabled>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-4">
+
+                        <label
+                            for="gender"
+                            class="form-label">
+
+                            Gender
+
+                        </label>
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+                                <i class="fa-solid fa-venus-mars"></i>
+                            </span>
+
+                            <select
+                                id="gender"
+                                class="form-select"
+                                disabled>
+
+                                <option value="">
+                                    Select Gender
+                                </option>
+
+                                <option value="Male">
+                                    Male
+                                </option>
+
+                                <option value="Female">
+                                    Female
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-12 mb-4">
+
+                        <label
+                            for="about"
+                            class="form-label">
+
+                            About
+
+                        </label>
+
+                        <textarea
+                            id="about"
+                            class="form-control"
+                            rows="4"
+                            placeholder="Tell us something about yourself..."
+                            disabled></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-buttons text-center">
+
+                    <button
+                        type="button"
+                        id="editBtn"
+                        class="btn btn-primary">
+
+                        <i class="fa-solid fa-pen-to-square"></i>
+
+                        Edit Profile
+
+                    </button>
+
+                    <button
+                        type="button"
+                        id="cancelBtn"
+                        class="btn btn-secondary d-none">
+
+                        <i class="fa-solid fa-xmark"></i>
+
+                        Cancel
+
+                    </button>
+
+                </div>
+
+            </form>
+
+<div class="delete-account-section">
+
+    <h5>
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        Delete Account
+    </h5>
+
+    <p>
+        Once you delete your account, all your account data will be permanently removed.
+    </p>
+
+    <button
+        type="button"
+        id="deleteAccountBtn"
+        class="btn btn-danger">
+
+        <i class="fa-solid fa-trash"></i>
+        Delete Account
+
+    </button>
+
+</div>
+            <div class="change-password-section">
+
+                <div class="section-title">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <span>Change Password</span>
+
+                </div>
+
+                <p class="section-description">
+                    Update your password to keep your account secure.
+                </p>
+
+
+                <button
+                    type="button"
+                    id="showPasswordBtn"
+                    class="btn change-password-toggle">
+
+                    <i class="fa-solid fa-key"></i>
+
+                    Change Password
+
+                </button>
+
+
+                <div
+                    id="passwordSection"
+                    class="password-section d-none">
+
+                    <div class="row">
+
+                        <div class="col-12 mb-3">
+
+                            <label
+                                for="currentPassword"
+                                class="form-label">
+
+                                Current Password
+
+                            </label>
+
+                            <div class="input-group">
+
+                                <span class="input-group-text">
+                                    <i class="fa-solid fa-lock"></i>
+                                </span>
+
+                                <input
+                                    type="password"
+                                    id="currentPassword"
+                                    class="form-control"
+                                    placeholder="Enter your current password">
+
+                                <button
+                                    type="button"
+                                    id="toggleCurrentPassword"
+                                    class="btn btn-outline-secondary">
+
+                                    <i class="fa-solid fa-eye"></i>
+
+                                </button>
+
+                            </div>
+
+                            <div id="currentPasswordError"></div>
+
+                        </div>
+
+
+                        <div class="col-md-6 mb-3">
+
+                            <label
+                                for="newPassword"
+                                class="form-label">
+
+                                New Password
+
+                            </label>
+
+                            <div class="input-group">
+
+                                <span class="input-group-text">
+                                    <i class="fa-solid fa-lock"></i>
+                                </span>
+
+                                <input
+                                    type="password"
+                                    id="newPassword"
+                                    class="form-control"
+                                    placeholder="Enter new password">
+
+                                <button
+                                    type="button"
+                                    id="toggleNewPassword"
+                                    class="btn btn-outline-secondary">
+
+                                    <i class="fa-solid fa-eye"></i>
+
+                                </button>
+
+                            </div>
+
+                            <div id="newPasswordError"></div>
+
+                        </div>
+
+
+                        <div class="col-md-6 mb-3">
+
+                            <label
+                                for="confirmPassword"
+                                class="form-label">
+
+                                Confirm New Password
+
+                            </label>
+
+                            <div class="input-group">
+
+                                <span class="input-group-text">
+                                    <i class="fa-solid fa-lock"></i>
+                                </span>
+
+                                <input
+                                    type="password"
+                                    id="confirmPassword"
+                                    class="form-control"
+                                    placeholder="Confirm new password">
+
+                                <button
+                                    type="button"
+                                    id="toggleConfirmPassword"
+                                    class="btn btn-outline-secondary">
+
+                                    <i class="fa-solid fa-eye"></i>
+
+                                </button>
+
+                            </div>
+
+                            <div id="confirmPasswordError"></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="password-buttons">
+
+                        <button
+                            type="button"
+                            id="changePasswordBtn"
+                            class="btn btn-success">
+
+                            <i class="fa-solid fa-check"></i>
+
+                            Change Password
+
+                        </button>
+
+                        <button
+                            type="button"
+                            id="cancelPasswordBtn"
+                            class="btn btn-secondary">
+
+                            Cancel
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+   
+<div class="bookings-section mt-5">
+
+    <div class="section-title">
+
+        <i class="fa-solid fa-suitcase-rolling"></i>
+
+        <span>My Bookings</span>
+
+    </div>
+
+    <p class="section-description">
+        Here you can view all your upcoming and previous trips.
+    </p>
+
+    <div id="bookingsContainer" class="row g-4">
+
+        <!-- Bookings -->
+
+    </div>
+
+</div>
+
+    </div>
+
+    <script src="../js/profile.js"></script>
+
+</body>
+
+</html>

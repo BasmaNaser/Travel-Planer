@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Complaints</title>
+
+    <link rel="icon" type="img/png" href="../imgs/download (1).webp">
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <link
+        rel="stylesheet"
+        href="../css/navandFooter.css">
+
+</head>
+<style>
+    @media (min-width:700px) {
+        button{
+        margin-top: 30px;
+    }
+    }
+    .login-btn{
+        margin-top: 0px;
+    }
+</style>
+</head>
+
+
+<body class="bg-light">
+
+     <nav class="navbar navbar-expand-lg bg-white shadow-sm fixed-top">
+    <div class="container">
+
+        <!-- Logo -->
+        <a class="navbar-brand fw-bold" href="./home.html">
+            Trip<span>Mate</span>
+        </a>
+
+        <!-- Mobile Button -->
+        <button class="navbar-toggler border-0 shadow-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navigation -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav mx-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./destination.html">
+                        Destination
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">
+                        Complaints
+                    </a>
+                </li>
+
+            </ul>
+
+            <!-- Login -->
+            <button class="btn btn-sm login-btn " id="mylogin">
+                Logout
+            </button>
+
+        </div>
+    </div>
+     </nav>
+
+    <div class="container py-5">
+
+        <h2 class="text-center mb-4">
+            Customer Complaints
+        </h2>
+
+        <div id="complaintsContainer"></div>
+
+    </div>
+
+
+    <script src="../js/adminComplaints.js"></script>
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js">
+</script>
+
+<script src="../js/adminComplaints.js"></script>
+</body>
+
+</html>

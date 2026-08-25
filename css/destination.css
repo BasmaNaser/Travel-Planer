@@ -1,0 +1,260 @@
+.search-filters {
+    padding: 6px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+.search-input {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    background-color: #f8fafc;
+    border-radius: 7px;
+}
+
+.search-input span {
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+.search-input input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 13px;
+}
+
+.search-input input::placeholder {
+    color: #9ca3af;
+}
+
+.search-filters .form-select {
+    height: 44px;
+    border: none;
+    border-radius: 7px;
+    background-color: #f8fafc;
+    font-size: 13px;
+    box-shadow: none;
+}
+
+.search-filters .form-select:focus {
+    box-shadow: none;
+}
+
+#searchBtn {
+    height: 44px;
+    padding: 0 20px;
+    background-color: #0bcac7;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-size: 13px;
+}
+
+#searchBtn:hover {
+    background-color: #078582;
+}
+
+.admin-area {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#newCardBtn {
+    padding: 10px 20px;
+    background-color: #0a9c99;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#newCardBtn:hover {
+    background-color: #078582;
+}
+
+#cardForm {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+#cardForm input,
+#cardForm select {
+    width: 100%;
+    height: 44px;
+    margin-bottom: 12px;
+    padding: 0 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 7px;
+    background-color: #f8fafc;
+    font-size: 13px;
+    outline: none;
+}
+
+#cardForm input:focus,
+#cardForm select:focus {
+    border-color: #0a9c99;
+}
+
+#cardForm input[type="file"] {
+    padding: 10px;
+}
+
+#saveBtn {
+    padding: 10px 20px;
+    background-color: #0a9c99;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#saveBtn:hover {
+    background-color: #078582;
+}
+
+.container h2 {
+    margin-top: 35px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.card {
+    height: 100%;
+    margin-bottom: 50px;
+    
+    overflow: hidden;
+    border: none;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 18px;
+}
+
+.card-body h3 {
+    margin-bottom: 10px;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.card-body p {
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #555;
+}
+.card-body p i {
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #00bceb;
+    padding-right: 10px;
+    font-size:18px;
+}
+
+.card-body strong {
+    display: inline-block;
+    margin-top: 12;
+    font-size: 19px;
+    color: #0a9c99;
+}
+
+.detailsBtn,
+.updateBtn,
+.deleteBtn {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 7px;
+    font-size: 13px;
+    cursor: pointer;
+}
+.card-body button i{
+    padding-right: 5px;
+}
+button{
+ height: 44px;
+    padding:20 0px;
+ 
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-size: 13px;
+}
+
+button:hover {
+    background-color: #078582;
+}
+.detailsBtn {
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #0a9c99;
+    color: white;
+}
+
+.detailsBtn:hover {
+    background-color: #078582;
+}
+
+.updateBtn {
+    background-color: #f59e0b;
+    color: white;
+}
+
+.updateBtn:hover {
+    background-color: #d97706;
+}
+
+.deleteBtn {
+    background-color: #ef4444;
+    color: white;
+    
+}
+
+.deleteBtn:hover {
+    background-color: #dc2626;
+}
+
+@media (max-width: 768px) {
+
+    .card img {
+        height: 200px;
+    }
+
+    .container h2 {
+        font-size: 21px;
+    }
+
+    #cardForm {
+        padding: 15px;
+    }
+
+}
+
+#error {
+    color: #dc3545;
+
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 20px;
+}

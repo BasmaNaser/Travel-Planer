@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TripMate - Your Next Adventure Starts Here</title>
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/navandFooter.css">
+      <link rel="stylesheet" href="../css/home.css">
+
+
+</head>
+<body>
+
+  <!-- Navbar -->
+   <nav class="navbar navbar-expand-lg bg-white shadow-sm fixed-top">
+    <div class="container">
+
+        <!-- Logo -->
+        <a class="navbar-brand fw-bold" href="./home.html">
+            Trip<span>Mate</span>
+        </a>
+
+        <!-- Mobile Button -->
+        <button class="navbar-toggler border-0 shadow-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navigation -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav mx-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./about.html">
+                        About Us
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link " href="./services.html">
+                        Services
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./destination.html">
+                        Destinations
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./contact.html">
+                        Contact Us
+                    </a>
+                </li>
+
+            </ul>
+
+            <!-- Login -->
+            <button class="btn-sm login-btn " id="mylogin">
+                Login
+            </button>
+            <button class="btn login-btn ms-2" id="myprofile">
+                Profile
+            </button>
+
+        </div>
+    </div>
+     </nav>
+
+  <!-- Hero Section -->
+  <section class="container px-md-3 px-0 mb-5 pb-5">
+    <div class="hero-section d-flex align-items-center justify-content-center text-center text-white p-4">
+      <div class="col-lg-8">
+        <h1 class="hero-title mb-3">Your Next Adventure Starts Here</h1>
+        <p class="mb-4 fw-light text-light opacity-90">
+          Discover breathtaking destinations, plan seamless itineraries, and make unforgettable memories with TripMate.
+        </p>
+        
+        <!-- Search Bar -->
+        <div class="search-box d-flex align-items-center">
+          <i class="bi bi-geo-alt text-muted fs-5 me-2"></i>
+          <input type="text" id="destinationInput" class="form-control" placeholder="Where do you want to go?" />
+          <button class="btn btn-custom-primary d-flex align-items-center gap-1" onclick="handleSearch()">
+            <i class="bi bi-search"></i> Search
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Destinations -->
+  <section class="container py-5">
+    <div class="d-flex justify-content-between align-items-end mb-4">
+      <div>
+        <h3 class="fw-bold mb-1">Popular Destinations</h3>
+        <p class="text-muted small mb-0">Explore our handcrafted selection of top-rated destinations loved by travellers worldwide.</p>
+      </div>
+      <a href="../html/destination.html" class="text-decoration-none fw-semibold small" style="color: var(--primary-color);">See All &rarr;</a>
+    </div>
+
+    <div class="row g-4" id="destinationsContainer">
+      <!-- Card 1: Santorini -->
+      <div class="col-md-4">
+        <div class="destination-card h-100 d-flex flex-column">
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=600&q=80" alt="Santorini">
+            <span class="badge-top-left bg-warning text-dark">Best Seller</span>
+            <button class="btn-fav" onclick="toggleFavorite(this)"><i class="bi bi-heart"></i></button>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <div class="d-flex justify-content-between align-items-start mb-1">
+              <h5 class="fw-bold mb-0">Santorini</h5>
+              <div class="small fw-bold text-warning"><i class="bi bi-star-fill"></i> 4.9</div>
+            </div>
+            <p class="text-muted small mb-2"><i class="bi bi-geo-alt"></i> Greece</p>
+            <div class="mb-3">
+              <span class="tag-badge">Beach</span>
+              <span class="tag-badge">Romance</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-end mt-auto pt-2 border-top">
+              <div>
+                <span class="text-muted d-block" style="font-size: 0.75rem;">Starting from</span>
+                <span class="price-text">$1,200</span>
+              </div>
+<a href="../html/destination.html" class="btn btn-custom-outline text-decoration-none">View Details</a>            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Ubud -->
+      <div class="col-md-4">
+        <div class="destination-card h-100 d-flex flex-column">
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=600&q=80" alt="Ubud">
+            <button class="btn-fav" onclick="toggleFavorite(this)"><i class="bi bi-heart"></i></button>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <div class="d-flex justify-content-between align-items-start mb-1">
+              <h5 class="fw-bold mb-0">Ubud</h5>
+              <div class="small fw-bold text-warning"><i class="bi bi-star-fill"></i> 4.8</div>
+            </div>
+            <p class="text-muted small mb-2"><i class="bi bi-geo-alt"></i> Indonesia</p>
+            <div class="mb-3">
+              <span class="tag-badge">Nature</span>
+              <span class="tag-badge">Culture</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-end mt-auto pt-2 border-top">
+              <div>
+                <span class="text-muted d-block" style="font-size: 0.75rem;">Starting from</span>
+                <span class="price-text">$850</span>
+              </div>
+              <button class="btn-custom-outline">View Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Tokyo -->
+      <div class="col-md-4">
+        <div class="destination-card h-100 d-flex flex-column">
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=600&q=80" alt="Tokyo">
+            <span class="badge-top-left bg-warning text-dark">Trending</span>
+            <button class="btn-fav" onclick="toggleFavorite(this)"><i class="bi bi-heart"></i></button>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <div class="d-flex justify-content-between align-items-start mb-1">
+              <h5 class="fw-bold mb-0">Tokyo</h5>
+              <div class="small fw-bold text-warning"><i class="bi bi-star-fill"></i> 4.9</div>
+            </div>
+            <p class="text-muted small mb-2"><i class="bi bi-geo-alt"></i> Japan</p>
+            <div class="mb-3">
+              <span class="tag-badge">City</span>
+              <span class="tag-badge">Food</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-end mt-auto pt-2 border-top">
+              <div>
+                <span class="text-muted d-block" style="font-size: 0.75rem;">Starting from</span>
+                <span class="price-text">$1,500</span>
+              </div>
+<a href="../html/destination.html" class="btn btn-custom-outline text-decoration-none">View Details</a>            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why TripMate Section -->
+  <section class="container py-5 text-center">
+    <h3 class="fw-bold mb-2">Why TripMate?</h3>
+    <p class="text-muted small mb-5">Everything you need for the perfect trip, all in one place.</p>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="feature-card">
+          <div class="feature-icon-wrapper" style="background-color: #e0f2fe; color: #0284c7;">
+            <i class="bi bi-compass"></i>
+          </div>
+          <h6 class="fw-bold">Easy Planning</h6>
+          <p class="text-muted small mb-0">Create collaborative itineraries in minutes.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card">
+          <div class="feature-icon-wrapper" style="background-color: #fef3c7; color: #d97706;">
+            <i class="bi bi-wallet2"></i>
+          </div>
+          <h6 class="fw-bold">Smart Budget</h6>
+          <p class="text-muted small mb-0">Track expenses and split costs seamlessly.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card">
+          <div class="feature-icon-wrapper" style="background-color: #ffedd5; color: #ea580c;">
+            <i class="bi bi-geo"></i>
+          </div>
+          <h6 class="fw-bold">Local Insights</h6>
+          <p class="text-muted small mb-0">Discover hidden gems and expert recommendations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner Section -->
+  <section class="container py-4">
+    <div class="cta-banner text-center">
+      <h3 class="fw-bold mb-2">Ready for Your Next Adventure?</h3>
+      <p class="small text-light opacity-90 mb-4">Join thousands of travelers who use TripMate to explore the world.</p>
+<a href="../html/login.html" class="btn btn-light fw-bold px-4 py-2 text-decoration-none" style="border-radius: 20px; color: var(--primary-color);">
+  Get Started for Free
+</a>       
+      </button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+     <footer class="footer">
+
+        <div class="">
+
+            <div class="py-4 px-3">
+                <div class="justify-content-between d-flex mx-auto flex-wrap">
+
+                    <div class="col-lg-4 mt-0 ">
+
+                        <h3 class="logo text-start">
+                            TripMate
+                        </h3>
+
+                        <p>
+                            Making travel planning simple, organized,
+                            and enjoyable for everyone.
+                        </p>
+
+                    </div>
+                    <div class="col-5 col-lg-3 m-2">
+
+                        <h5>Links</h5>
+
+                        <ul>
+
+                            <li><a href="./home.html">Home</a></li>
+
+                            <li><a href="./destination.html">Destinations</a></li>
+
+                            <li><a href="./services.html">Services</a></li>
+
+                            <li><a href="./about.html">About</a></li>
+
+                        </ul>
+
+                    </div>
+
+                    <div class="col-5 col-lg-3 m-2">
+
+                        <h5>Support</h5>
+
+                        <ul>
+
+                            <li><a href="#">FAQ</a></li>
+
+                            <li><a href="./contact.html">Contact</a></li>
+
+                            <li><a href="#">Privacy Policy</a></li>
+
+                            <li><a href="#">Terms</a></li>
+
+                        </ul>
+
+                    </div>
+
+                    <div class=" m-auto m-2 mt-3">
+
+                        <h5 class="text-center">Follow Us</h5>
+
+                        <div class="social-icons">
+
+                            <a href="#">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </a>
+
+                            <a href="#">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+
+                            <a href="#">
+                                <i class="fa-brands fa-x-twitter"></i>
+                            </a>
+
+                            <a href="#">
+                                <i class="fa-brands fa-linkedin-in"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <div class="copyright">
+
+                    © 2026 TripMate. All Rights Reserved.
+
+                </div>
+            </div>
+
+        </div>
+
+    </footer>
+
+  <!-- JavaScript Code -->
+  <script>
+    // دالة البحث والفلترة
+
+    let myDiv = document.getElementById('myDiv')
+
+let registerdUserlocal = JSON.parse(localStorage.getItem('loginedUser'))
+let registerdUsersession = JSON.parse(sessionStorage.getItem('loginedUser'))
+let myBtn=document.getElementById('mylogin')
+let myProfile = document.getElementById('myprofile')
+if(registerdUserlocal||registerdUsersession){
+    myBtn.innerHTML='Logout'
+    myBtn.classList.add('btn-danger')
+    myProfile.classList.remove('d-none')
+
+}
+else
+{
+    myBtn.innerHTML='Login'
+    myBtn.classList.remove('btn-danger')
+    myBtn.style.border='#0ea5a8'
+    myProfile.classList.add('d-none')
+}
+myBtn.onclick = function(){
+
+    if (registerdUserlocal) {
+        localStorage.removeItem('loginedUser')
+    }
+
+    if (registerdUsersession) {
+        sessionStorage.removeItem('loginedUser')
+    }
+
+    window.location.href = '../html/login.html'
+}
+
+myProfile.addEventListener('click',function(){
+    if(registerdUserlocal||registerdUsersession){
+    window.open('../html/profile.html','_self')
+
+}
+    else
+    {
+        myBtn.innerHTML='Login'
+        myBtn.classList.remove('btn-danger')
+        myBtn.style.border='#0ea5a8'
+        myProfile.classList.add('d-none')
+    }
+})
+
+    function handleSearch() {
+      const input = document.getElementById('destinationInput');
+      if (!input) return;
+
+      const query = input.value.toLowerCase().trim();
+      const cardCols = document.querySelectorAll('#destinationsContainer > .col-md-4');
+
+      cardCols.forEach(col => {
+        const titleEl = col.querySelector('h5');
+        const locationEl = col.querySelector('p');
+
+        const title = titleEl ? titleEl.innerText.toLowerCase() : '';
+        const location = locationEl ? locationEl.innerText.toLowerCase() : '';
+
+        // إظهار أو إخفاء العنصر بالكامل باستخدام كلاس Bootstrap d-none
+        if (title.includes(query) || location.includes(query) || query === '') {
+          col.classList.remove('d-none');
+        } else {
+          col.classList.add('d-none');
+        }
+      });
+    }
+
+    // تفعيل البحث عند الكتابة المباشرة والضغط على Enter
+    document.addEventListener('DOMContentLoaded', () => {
+      const input = document.getElementById('destinationInput');
+      
+      if (input) {
+        // تصفية فورية أثناء الكتابة
+        input.addEventListener('input', handleSearch);
+
+        // تصفية عند الضغط على مفتاح Enter
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSearch();
+          }
+        });
+      }
+    });
+
+    // تفعيل وإلغاء زر المفضلة (Heart Icon)
+    function toggleFavorite(btn) {
+      btn.classList.toggle('active');
+      const icon = btn.querySelector('i');
+      if (icon) {
+        if (btn.classList.contains('active')) {
+          icon.classList.remove('bi-heart');
+          icon.classList.add('bi-heart-fill');
+        } else {
+          icon.classList.remove('bi-heart-fill');
+          icon.classList.add('bi-heart');
+        }
+      }
+    }
+  </script>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <!-- <script src="main.js"></script> -->
+</body>
+</html>
